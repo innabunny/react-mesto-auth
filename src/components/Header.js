@@ -1,29 +1,29 @@
-import {Link, Route, useHistory} from "react-router-dom";
+import {Link, Route, useHistory, useLocation} from "react-router-dom";
 
 
-function Header({email}) {
+function Header(props) {
   const history = useHistory();
-
+  const {pathname}  = useLocation();
   const signOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
-    email = '';
+    props.email = '';
     history.push('/sign-in');
   }
   return (
     <header className="header">
       <div className="header__logo"></div>
       <div className="header__nav">
-        <Route path='/sign-up'>
-          <Link to='/sign-in' className="header__link">Войти</Link>
-        </Route>
-        <Route path='/sign-in'>
-          <Link to='/sign-up' className="header__link">Регистрация</Link>
-        </Route>
-        <Route exact path='/'>
-          <p className="header__email">{email}</p>
-          <Link to='/sign-in' className="header__link" onClick={signOut}>Выйти</Link>
-        </Route>
+        {(pathname === '/sign-up') &&
+          <Link to='/sign-in' className="header__link">Войти</Link>}
+        {(pathname === '/sign-in') &&
+          <Link to='/sign-up' className="header__link">Регистрация</Link>}
+        {(pathname === '/') &&
+          <>
+            <p className="header__email">{props.email}</p>
+            <button className="header__button" onClick={signOut}>Выйти</button>
+          </>
+        }
       </div>
     </header>
   )

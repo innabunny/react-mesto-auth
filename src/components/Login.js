@@ -1,5 +1,4 @@
 import {useState} from "react";
-import {Link, Route} from "react-router-dom";
 
 function Login({onLogin}) {
   const [email, setEmail] = useState('');
@@ -15,8 +14,7 @@ function Login({onLogin}) {
   function handleSubmit(e) {
     e.preventDefault();
     onLogin({email: email, password: password});
-    setEmail('');
-    setPassword('');
+    setPassword('')
   }
 
   return(

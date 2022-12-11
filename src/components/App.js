@@ -31,7 +31,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [requestStatus, setRequestStatus] = useState(false);
 
   const closeAllPopups = () => {
@@ -137,7 +137,6 @@ function App() {
       .then(([userData, cards]) => {
         setCurrentUser(userData);
         setCards(cards);
-
       })
       .catch((err) => {
         console.log('Ошибка', err);
@@ -164,7 +163,7 @@ function App() {
       .then((res) => {
         localStorage.setItem('token', res.token);
         localStorage.setItem('email', data.email);
-        setUserEmail(data.email);
+        setEmail(data.email);
         setLoggedIn(true);
         history.push('/');
       })
@@ -180,6 +179,7 @@ function App() {
         .then((res) =>{
           if(res) {
             setLoggedIn(true);
+            setEmail(res.data.email);
             history.push('/');
           }
         })
@@ -196,7 +196,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
      <div className="page">
-       <Header email={userEmail} onLoggedIn={loggedIn}/>
+       <Header email={email} onLoggedIn={loggedIn}/>
        <Switch>
          <ProtectedRoute exact path="/" loggedIn={loggedIn}
                          component={Main}

@@ -18,7 +18,11 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, isLoading}) {
     onAddPlace({name: cardName, link: cardLink});
   }
 
-  useEffect(() => {setCardName(''); setCardLink('');}, [isOpen])
+  useEffect(() => {
+    if(isOpen) {
+      setCardName(''); setCardLink('');
+    }
+    }, [isOpen])
 
   return (
     <PopupWithForm name={'card-add'} title={'Новое место'}
@@ -27,14 +31,26 @@ function AddPlacePopup({isOpen, onClose, onAddPlace, isLoading}) {
       buttonTitle={isLoading ? 'Сохранение...' : 'Сохранить'}
       onSubmit={handleSubmit}
     >
-      <input type="text" name="name" minLength="2" maxLength="30" required id="add-name-input"
-        className="popup__input popup__input_type_name" placeholder="Название"
+      <input
+        type="text"
+        name="name"
+        minLength="2"
+        maxLength="30"
+        required
+        id="add-name-input"
+        className="popup__input popup__input_type_name"
+        placeholder="Название"
         value={cardName}
         onChange={handleChangeName}
       />
       <span className="popup__input-error" id="add-name-input-error"></span>
-      <input type="url" name="link" required id="add-link-input"
-         className="popup__input popup__input_type_link" placeholder="Ссылка на картинку"
+      <input
+        type="url"
+        name="link"
+        required
+        id="add-link-input"
+        className="popup__input popup__input_type_link"
+        placeholder="Ссылка на картинку"
         value={cardLink}
         onChange={handleChangeLink}
       />
