@@ -11,4 +11,4 @@
 * React
 * Реализована функция авторизации
 
-### <img src="./src/images/img.png">
+### <img src="./src/images/img_1.png">
