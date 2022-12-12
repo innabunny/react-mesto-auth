@@ -1,6 +1,5 @@
 import {useState} from "react";
-import {Link, Route} from "react-router-dom";
-
+import {Link} from "react-router-dom";
 function Register({onRegister}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,7 +22,7 @@ function Register({onRegister}) {
       <h2 className="auth__title">Регистрация</h2>
       <form className="auth__form" onSubmit={handleSubmit}>
         <input className="auth__input" id="email" name="email" type="email" placeholder="Email"
-               minLength="6" maxLength="20"value={email || ''} onChange={handleEmailChange}/>
+               minLength="6" maxLength="20" value={email || ''} onChange={handleEmailChange}/>
         <input className="auth__input" id="password" name="password" type="password" placeholder="Пароль"
                minLength="3" maxLength="20" value={password || ''} onChange={handlePasswordChange}/>
         <button className="auth__button" type="submit">Зарегистрироваться</button>
@@ -33,5 +32,4 @@ function Register({onRegister}) {
     </div>
   )
 }
-
 export default Register

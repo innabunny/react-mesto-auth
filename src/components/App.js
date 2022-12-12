@@ -142,7 +142,6 @@ function App() {
         console.log('Ошибка', err);
       })
   },[])
-
   function handleRegister(data) {
     authApi.registerUser(data.email, data.password)
       .then(() => {
@@ -157,7 +156,6 @@ function App() {
         setIsInfoToolPopupOpen(true);
       })
   }
-
   function handleAuthorization(data) {
     authApi.loginUser(data.email, data.password)
       .then((res) => {
@@ -171,7 +169,6 @@ function App() {
         console.log('Ошибка', err);
       })
   }
-
   function tokenCheck() {
     if(localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
