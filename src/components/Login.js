@@ -20,10 +20,21 @@ function Login({onLogin}) {
     <div className="auth">
       <h2 className="auth__title">Вход</h2>
       <form className="auth__form" onSubmit={handleSubmit}>
-        <input className="auth__input" id="email" name="email" type="email" placeholder="Email"
-               minLength="6" value={email || ''} onChange={handleEmailChange}/>
-        <input className="auth__input" id="password" name="password" type="password" placeholder="Пароль"
-               minLength="3" value={password || ''} onChange={handlePasswordChange}/>
+        <input
+          className="auth__input"
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Email"
+          value={email || ''}
+          onChange={handleEmailChange}/>
+        <input
+          className="auth__input"
+          id="password"
+          name="password" type="password"
+          placeholder="Пароль"
+          value={password || ''}
+          onChange={handlePasswordChange}/>
         <button className="auth__button" type="submit">Войти</button>
       </form>
     </div>
