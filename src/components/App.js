@@ -133,15 +133,17 @@ function App() {
   }
 
   useEffect(() => {
-    Promise.all([api.getUserData(), api.getCards()])
-      .then(([userData, cards]) => {
-        setCurrentUser(userData);
-        setCards(cards);
-      })
-      .catch((err) => {
-        console.log('Ошибка', err);
-      })
-  },[])
+    if(loggedIn) {
+      Promise.all([api.getUserData(), api.getCards()])
+        .then(([userData, cards]) => {
+          setCurrentUser(userData);
+          setCards(cards);
+        })
+        .catch((err) => {
+          console.log('Ошибка', err);
+        })
+    }
+  },[loggedIn])
   function handleRegister(data) {
     authApi.registerUser(data.email, data.password)
       .then(() => {
@@ -190,10 +192,17 @@ function App() {
     tokenCheck();
   }, [])
 
+  function signOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    setEmail('');
+    history.push('/sign-in');
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
      <div className="page">
-       <Header email={email} onLoggedIn={loggedIn}/>
+       <Header email={email} onLoggedIn={loggedIn} signOut={signOut}/>
        <Switch>
          <ProtectedRoute exact path="/" loggedIn={loggedIn}
                          component={Main}

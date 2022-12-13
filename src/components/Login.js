@@ -14,7 +14,6 @@ function Login({onLogin}) {
   function handleSubmit(e) {
     e.preventDefault();
     onLogin({email: email, password: password});
-    setPassword('')
   }
 
   return(
@@ -22,9 +21,9 @@ function Login({onLogin}) {
       <h2 className="auth__title">Вход</h2>
       <form className="auth__form" onSubmit={handleSubmit}>
         <input className="auth__input" id="email" name="email" type="email" placeholder="Email"
-               minLength="6" maxLength="20" value={email || ''} onChange={handleEmailChange}/>
+               minLength="6" value={email || ''} onChange={handleEmailChange}/>
         <input className="auth__input" id="password" name="password" type="password" placeholder="Пароль"
-               minLength="3" maxLength="20" value={password || ''} onChange={handlePasswordChange}/>
+               minLength="3" value={password || ''} onChange={handlePasswordChange}/>
         <button className="auth__button" type="submit">Войти</button>
       </form>
     </div>
